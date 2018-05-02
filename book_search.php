@@ -1,54 +1,28 @@
 <?php
 session_start();
-include "classes.php";
-
+//connection
 $pdo= new PDO("mysql:host=localhost;dbname=Pusheen_library", "root", "");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-//creating a new Search instance if one of the fields is not empty
-if (!empty($_REQUEST["title"]) || !empty($_REQUEST["author"]) || !empty($_REQUEST["isbn"]) ||
-    !empty($_REQUEST["genre"]) || !empty($_REQUEST["rating"]) || !empty($_REQUEST["book_format"])){
-    $search= new Search($_REQUEST["title"], $_REQUEST["author"], $_REQUEST["isbn"],
-                        $_REQUEST["genre"], $_REQUEST["rating"], $_REQUEST["book_format"]);
+
+
+//query
+if (isset($_REQUEST["title"])){
+    $sql= "SELECT * FROM books WHERE title LIKE CONCAT('%', :title, '%')";    // :title = placeholder
+    $stmt= $pdo->prepare($sql);
+    $stmt->execute(array(":title" => $_REQUEST["title"] ));
+
+    $search_results= [];
+
+    while ($row= $stmt->fetch(PDO::FETCH_ASSOC)){
+        array_push($search_results, $row);
+    }
+
+    $_SESSION["search_results"]= $search_results;
+    header("Location: search_results.php");
+    return;
 }
 
-//searches based on 1 of the fields
-if (!empty($_REQUEST["title"])){
-    $search_results= $search->searchByTitle($pdo);
-    $_SESSION["search_results"]= $search_results;
-    header("Location: search_results.php");
-    return;
-}
-if (!empty($_REQUEST["author"])){
-    $search_results= $search->searchByAuthor($pdo);
-    $_SESSION["search_results"]= $search_results;
-    header("Location: search_results.php");
-    return;
-}
-if (!empty($_REQUEST["isbn"])){
-    $search_results= $search->searchByISBN($pdo);
-    $_SESSION["search_results"]= $search_results;
-    header("Location: search_results.php");
-    return;
-}
-if (!empty($_REQUEST["genre"])){
-    $search_results= $search->searchByGenre($pdo);
-    $_SESSION["search_results"]= $search_results;
-    header("Location: search_results.php");
-    return;
-}
-if (!empty($_REQUEST["rating"])){
-    $search_results= $search->searchByRating($pdo);
-    $_SESSION["search_results"]= $search_results;
-    header("Location: search_results.php");
-    return;
-}
-if (!empty($_REQUEST["book_format"])){
-    $search_results= $search->searchByFormat($pdo);
-    $_SESSION["search_results"]= $search_results;
-    header("Location: search_results.php");
-    return;
-}
 ?>
 
 
@@ -124,8 +98,8 @@ if (!empty($_REQUEST["book_format"])){
                 </div>
                 <div class="form-group">
                     <label>Format:</label><br>
-                    <input type="radio" name="book_format" value="Book"> Book<br>
-                    <input type="radio" name="book_format" value="Audiobook"> Audiobook<br>
+                    <input type="radio" name="format" value="Book"> Book<br>
+                    <input type="radio" name="format" value="Audiobook"> Audiobook<br>
                 </div> 
                 <input type="submit" value="Search" class="btn btn-primary"/>
             </form>
