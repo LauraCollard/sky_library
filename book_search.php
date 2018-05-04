@@ -1,9 +1,13 @@
 <?php
 session_start();
+
+//////REDIRECT if not logged in
+
+include "pdo.php";
 include "class_search.php";
 
-$pdo= new PDO("mysql:host=localhost;dbname=Pusheen_library", "root", "");
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//$pdo= new PDO("mysql:host=localhost;dbname=Pusheen_library", "root", "");
+//$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 //creating a new Search instance if one of the fields is not empty
 if (!empty($_REQUEST["title"]) || !empty($_REQUEST["author"]) || !empty($_REQUEST["isbn"]) ||
@@ -18,7 +22,6 @@ if (!empty($_REQUEST["title"]) || !empty($_REQUEST["author"]) || !empty($_REQUES
 }
 ?>
 
-
 <html>
     <head>
         <title>Pusheen Library - Book search</title>
@@ -30,7 +33,8 @@ if (!empty($_REQUEST["title"]) || !empty($_REQUEST["author"]) || !empty($_REQUES
     </head>
     <body>
         <div class="container">
-            <form action="" method="post" class="col-sm-6">
+            <h1 class="text-center">Book search</h1>
+            <form action="" method="post" class="col-sm-6 offset-sm-3">
                 <div class="form-group">
                     <label for="title">Title:</label>
                     <input type="text" name="title" id="title" class="form-control" placeholder="The Hobbit" autofocus/>
@@ -94,8 +98,10 @@ if (!empty($_REQUEST["title"]) || !empty($_REQUEST["author"]) || !empty($_REQUES
                     <input type="hidden" name="book_format" value="">
                     <input type="radio" name="book_format" value="Book"> Book<br>
                     <input type="radio" name="book_format" value="Audiobook"> Audiobook<br>
-                </div> 
-                <input type="submit" value="Search" class="btn btn-primary"/>
+                </div>
+                <div class="text-center">
+                    <input type="submit" value="Search" class="btn btn-primary"/>
+                </div>
             </form>
         </div>
 
