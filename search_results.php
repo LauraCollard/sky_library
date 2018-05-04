@@ -1,9 +1,7 @@
 <?php
 session_start();
 $results= $_SESSION["search_results"];
-
 ?>
-
 
 <html>
     <head>

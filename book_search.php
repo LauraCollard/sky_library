@@ -10,41 +10,8 @@ if (!empty($_REQUEST["title"]) || !empty($_REQUEST["author"]) || !empty($_REQUES
     !empty($_REQUEST["genre"]) || !empty($_REQUEST["rating"]) || !empty($_REQUEST["book_format"])){
     $search= new Search($_REQUEST["title"], $_REQUEST["author"], $_REQUEST["isbn"],
                         $_REQUEST["genre"], $_REQUEST["rating"], $_REQUEST["book_format"]);
-}
-
-//searches based on 1 of the fields
-if (!empty($_REQUEST["title"])){
-    $search_results= $search->searchByTitle($pdo);
-    $_SESSION["search_results"]= $search_results;
-    header("Location: search_results.php");
-    return;
-}
-if (!empty($_REQUEST["author"])){
-    $search_results= $search->searchByAuthor($pdo);
-    $_SESSION["search_results"]= $search_results;
-    header("Location: search_results.php");
-    return;
-}
-if (!empty($_REQUEST["isbn"])){
-    $search_results= $search->searchByISBN($pdo);
-    $_SESSION["search_results"]= $search_results;
-    header("Location: search_results.php");
-    return;
-}
-if (!empty($_REQUEST["genre"])){
-    $search_results= $search->searchByGenre($pdo);
-    $_SESSION["search_results"]= $search_results;
-    header("Location: search_results.php");
-    return;
-}
-if (!empty($_REQUEST["rating"])){
-    $search_results= $search->searchByRating($pdo);
-    $_SESSION["search_results"]= $search_results;
-    header("Location: search_results.php");
-    return;
-}
-if (!empty($_REQUEST["book_format"])){
-    $search_results= $search->searchByFormat($pdo);
+                        
+    $search_results= $search->searchByXParams($pdo);
     $_SESSION["search_results"]= $search_results;
     header("Location: search_results.php");
     return;
@@ -124,14 +91,13 @@ if (!empty($_REQUEST["book_format"])){
                 </div>
                 <div class="form-group">
                     <label>Format:</label><br>
+                    <input type="hidden" name="book_format" value="">
                     <input type="radio" name="book_format" value="Book"> Book<br>
                     <input type="radio" name="book_format" value="Audiobook"> Audiobook<br>
                 </div> 
                 <input type="submit" value="Search" class="btn btn-primary"/>
             </form>
         </div>
-
-
 
 
         <!-- Bootstrap JS -->
