@@ -6,3 +6,4 @@
 - v0.3 multi search version
 - v0.4 edit book option for staff members
 - v0.5 delete for staff and login functionality (redirect to login page / using $_SESSION["security"] for displayed buttons
+- v0.6 leave a rating implemented
