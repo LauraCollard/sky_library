@@ -7,3 +7,4 @@
 - v0.4 edit book option for staff members
 - v0.5 delete for staff and login functionality (redirect to login page / using $_SESSION["security"] for displayed buttons
 - v0.6 leave a rating implemented
+- v0.7 borrow book implemented
