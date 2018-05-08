@@ -9,3 +9,4 @@
 - v0.6 leave a rating implemented
 - v0.7 borrow book implemented
 - v0.8 styling (with toughBtn)
+- v0.9 login, profile and book search + styling (branch merge)
