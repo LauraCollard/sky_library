@@ -33,15 +33,16 @@ foreach($results as $book){
         <!--Fonts-->
         <link rel="stylesheet" type="text/css" href="../steph/_css/ss-pika.css" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="../_css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
     <nav class="navbar navbar-expand navbar-dark" style="height:70px;"> 
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="../profile/index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../profile/index.html">Profile</a>
+                    <a class="nav-link" href="book_search.php">Search & Borrow Books</a>
                 </li>
               </ul>
               <ul class="navbar-nav">
@@ -54,6 +55,7 @@ foreach($results as $book){
         <div class="container">
         <h1 class="text-center">Your results</h1>
         <div class="flex-container">
+            
         <?php
             if (!empty($book_objects)){
                 foreach($book_objects as $book){
@@ -80,7 +82,7 @@ foreach($results as $book){
                     
                 }
             } else {
-                echo "Sorry, no results match your search.";
+                echo "<div class='text-center' style='width:100%;margin-top:70px;'><p style='color:white;font-size:20px;'>Sorry, no results match your search.</p></div>";
             }
         ?>
         </div>
@@ -88,7 +90,6 @@ foreach($results as $book){
                 <a href="book_search.php" class="button" style="margin-top:20px; margin-bottom:40px;">Search again</a>
             </div>
         </div>
-        
 
         <!-- Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

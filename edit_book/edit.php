@@ -85,15 +85,16 @@ $book= new Book($row["book_id"], $row["isbn"], $row["title"], $row["image_url"],
         <!--Fonts-->
         <link rel="stylesheet" type="text/css" href="../steph/_css/ss-pika.css" />
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="../_css/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
     <nav class="navbar navbar-expand navbar-dark" style="height:70px;"> 
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="../profile/index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../profile/index.html">Profile</a>
+                    <a class="nav-link" href="../book_search/book_search.php">Search & Borrow Books</a>
                 </li>
               </ul>
               <ul class="navbar-nav">
@@ -104,6 +105,7 @@ $book= new Book($row["book_id"], $row["isbn"], $row["title"], $row["image_url"],
         </nav>
         <div class="container">
             <h1 class="text-center">Edit details: <?=$book->getTitle()?></h1>
+            <div id="unique-section" class="row">
             <div class="section" style="width:100%;">
                 <div class="text-center">
                     <img src="<?=$book->getImage_url()?>" alt="<?=$book->getTitle()?>" style="margin-bottom:20px;">
@@ -196,6 +198,7 @@ $book= new Book($row["book_id"], $row["isbn"], $row["title"], $row["image_url"],
                     </div>
                 </form>
             </div>
+        </div>
         </div>
         
         <!-- Bootstrap JS -->
