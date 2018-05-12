@@ -11,3 +11,4 @@
 - v0.8 styling (with toughBtn)
 - v0.9 login, profile and book search + styling (branch merge)
 - v1.0 all pages and style (return books button needs fixing)
+- v1.1 final version
