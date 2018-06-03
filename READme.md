@@ -1,4 +1,4 @@
-# Library project backup
+# Library project
 
 **Releases:**
 - v1.1 final version
